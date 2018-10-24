@@ -22,3 +22,10 @@ def test_coord_valid_true():
 
 def test_coord_valid_false():
     assert_equal(solver.coord_valid((3, 2), matrix), False)
+
+def flood_fill_non_valid():
+    assert_equal(solver.flood_fill((3, 1), matrix), set())
+
+def test_flood_fill_valid():
+    assert_equal(solver.flood_fill((1, 3), matrix), set([(1, 3), (2, 3), (3, 3), (2, 2), (2, 1),
+                                                         (3, 1), (3, 0)]))
