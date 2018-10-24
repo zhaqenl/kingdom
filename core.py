@@ -28,8 +28,8 @@ class KingdomSolver:
         row_index, column_index = coord
 
         if matrix[row_index][column_index].isalpha():
-            set_ = set([(row_index + row, column_index + column) for row, column in self.delta_coords if
-                        row_index + row >= 0 <= column_index + column and
+            set_ = set([(row_index + row, column_index + column) for row, column in
+                        self.delta_coords if row_index + row >= 0 <= column_index + column and
                         row_index + row <= max_column_len and column_index + column <= max_row_len
                         and not matrix[row_index + row][column_index + column] == '#'])
             set_.add(coord)
@@ -37,4 +37,11 @@ class KingdomSolver:
         else:
             return set()
 
-    
+    def coord_valid(self, coord, matrix):
+        """Return True if coord is not a mountain symbol, False if it is.
+        """
+        row_index = coord[0]
+        column_index = coord[1]
+        if matrix[row_index][column_index] != '#':
+            return True
+        return False
