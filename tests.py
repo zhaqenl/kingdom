@@ -5,9 +5,6 @@ import input_data
 solver = core.KingdomSolver()
 matrix = input_data.simple_grid.split()
 
-def coord_match():
-    pass
-
 def test_find_alpha():
     assert_equal(solver.map_alpha(input_data.simple_grid), {'e': [(1, 3)]})
 
