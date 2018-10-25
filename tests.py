@@ -6,7 +6,7 @@ solver = core.KingdomSolver()
 matrix_simple = input_data.simple_grid.split()
 matrix_ebzzry = input_data.ebzzry_grid.split()
 
-def test_find_alpha():
+def test_map_alpha():
     assert_equal(solver.map_alpha(input_data.simple_grid), {'e': [(1, 3)], 'f': [(3, 1)]})
 
 def test_valid_coord_false():
@@ -28,3 +28,13 @@ def test_flood_fill_valid():
     assert_equal(solver.flood_fill((1, 3), matrix_simple), (set([(1, 3), (2, 3), (3, 3), (2, 2),
                                                                  (2, 1), (3, 1), (3, 0)]),
                                                             set([(3, 1)])))
+
+def test_flood_fill_valid_ebzzry():
+    assert_equal(solver.flood_fill((7, 12), matrix_ebzzry), (set([(6, 12), (6, 13), (7, 12),
+                                                                  (7, 13)]),
+                                                             set([(7, 13)])))
+
+def test_map_alpha_field_simple():
+    assert_equal(solver.map_alpha_field(input_data.simple_grid),
+                 {'e': (set([(1, 3), (2, 3), (3, 3), (2, 2), (2, 1), (3, 1), (3, 0)]), set([(3, 1)])),
+                  'f': (set([(1, 3), (2, 3), (3, 3), (2, 2), (2, 1), (3, 1), (3, 0)]), set([(1, 3)]))})

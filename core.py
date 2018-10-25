@@ -70,3 +70,17 @@ class KingdomSolver(object):
                     pivots.append((new_row, new_column))
 
         return collected_field, collected_army
+
+    def map_alpha_field(self, string_grid):
+        """Return armies and the coordinates of fields they occupy."""
+        matrix = string_grid.split()
+        army_field = dict()
+
+        for row_index, row in enumerate(matrix):
+            for column_index, column in enumerate(row):
+                if column.isalpha() and not column in army_field:
+                    army_field[column] = self.flood_fill((row_index, column_index), matrix)
+                elif column.isalpha() and column in army_field:
+                    army_field[column].update(self.flood_fill((row_index, column_index), matrix))
+
+        print army_field
