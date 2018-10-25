@@ -9,17 +9,17 @@ matrix_ebzzry = input_data.ebzzry_grid.split()
 def test_find_alpha():
     assert_equal(solver.map_alpha(input_data.simple_grid), {'e': [(1, 3)], 'f': [(3, 1)]})
 
-def test_coord_field_true():
-    assert_equal(solver.coord_field((3, 0), matrix_simple), True)
+def test_valid_coord_false():
+    assert_equal(solver.valid_coord((4, 5), matrix_simple), False)
 
-def test_coord_field_false():
-    assert_equal(solver.coord_field((3, 2), matrix_simple), False)
+def test_valid_coord_true():
+    assert_equal(solver.valid_coord((4, 4), matrix_simple), True)
 
-def test_coord_army_false():
-    assert_equal(solver.coord_army((1, 7), matrix_ebzzry), False)
+def test_coord_type_army():
+    assert_equal(solver.coord_type((3, 1), matrix_simple), 'army')
 
-def test_coord_army_true():
-    assert_equal(solver.coord_army((1, 8), matrix_ebzzry), True)
+def test_coord_type_field():
+    assert_equal(solver.coord_type((3, 0), matrix_simple), 'field')
 
 def flood_fill_non_valid():
     assert_equal(solver.flood_fill((3, 1), matrix_simple), set())

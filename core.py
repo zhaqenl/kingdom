@@ -4,29 +4,14 @@ class KingdomSolver(object):
     """Class."""
 
     @classmethod
-    def coord_field(cls, coord, matrix):
-        """Return True if coord is a field symbol, False if it is not."""
+    def valid_coord(cls, coord, matrix):
+        """Return True if coord is within matrix bounds, False if not."""
         max_row = len(matrix) - 1
         max_column = len(matrix[0]) - 1
         row_index = coord[0]
         column_index = coord[1]
 
-        if 0 <= row_index <= max_row and 0 <= column_index <= max_column and \
-        matrix[row_index][column_index] == '.':
-            return True
-
-        return False
-
-    @classmethod
-    def coord_army(cls, coord, matrix):
-        """Return True if coord is an army symbol, False if it is not."""
-        max_row = len(matrix) - 1
-        max_column = len(matrix[0]) - 1
-        row_index = coord[0]
-        column_index = coord[1]
-
-        if 0 <= row_index <= max_row and 0 <= column_index <= max_column and \
-        matrix[row_index][column_index].isalpha():
+        if 0 <= row_index <= max_row and 0 <= column_index <= max_column:
             return True
 
         return False
@@ -46,6 +31,18 @@ class KingdomSolver(object):
 
         return army_field
 
+    def coord_type(self, coord, matrix):
+        """Return \'army\' if coord is of an army symbol, \'field\' if it is of a field symbol."""
+        row_index = coord[0]
+        column_index = coord[1]
+
+        if self.valid_coord(coord, matrix) and matrix[row_index][column_index].isalpha():
+            return 'army'
+        elif self.valid_coord(coord, matrix) and matrix[row_index][column_index] == '.':
+            return 'field'
+
+        return None
+
     def flood_fill(self, coord, matrix):
         """Return set of field coordinates and army coordinates connected to coord."""
         delta_coords = [(0, -1), (-1, 0), (0, 1), (1, 0)]
@@ -61,14 +58,13 @@ class KingdomSolver(object):
                 delta_column = dir_[1]
                 new_row = curr_row + delta_row
                 new_column = curr_column + delta_column
+                coord_type = self.coord_type((new_row, new_column), matrix)
 
-                if self.coord_field((new_row, new_column), matrix) and not (new_row, new_column) \
-                in collected_field:
+                if coord_type == 'field' and not (new_row, new_column) in collected_field:
                     collected_field.add((new_row, new_column))
                     pivots.append((new_row, new_column))
 
-                if self.coord_army((new_row, new_column), matrix) and not (new_row, new_column) \
-                in collected_field:
+                if coord_type == 'army' and not (new_row, new_column) in collected_field:
                     collected_field.add((new_row, new_column))
                     collected_army.add((new_row, new_column))
                     pivots.append((new_row, new_column))
