@@ -3,11 +3,6 @@
 class KingdomSolver(object):
     """Class."""
 
-    def __init__(self):
-        """Initialize variable."""
-        self.delta_coords = [(0, -1), (-1, 0), (0, 1), (1, 0)]
-        self.army_field = dict()
-
     def coord_field(self, coord, matrix):
         """Return True if coord is a field symbol, False if it is not."""
         max_row = len(matrix) - 1
@@ -37,18 +32,20 @@ class KingdomSolver(object):
     def map_alpha(self, string_grid):
         """Return dictionary containing letter and coordinate pairs."""
         matrix = string_grid.split()
+        army_field = dict()
 
         for row_index, row in enumerate(matrix):
             for column_index, column in enumerate(row):
-                if column.isalpha() and not column in self.army_field:
-                    self.army_field[column] = [(row_index, column_index)]
-                elif column.isalpha() and column in self.army_field:
-                    self.army_field[column] += [(row_index, column_index)]
+                if column.isalpha() and not column in army_field:
+                    army_field[column] = [(row_index, column_index)]
+                elif column.isalpha() and column in army_field:
+                    army_field[column] += [(row_index, column_index)]
 
-        return self.army_field
+        return army_field
 
     def flood_fill(self, coord, matrix):
         """Return set of field coordinates and army coordinates connected to coord."""
+        delta_coords = [(0, -1), (-1, 0), (0, 1), (1, 0)]
         pivots = [coord]
         collected_field = set()
         collected_army = set()
@@ -56,7 +53,7 @@ class KingdomSolver(object):
         while pivots:
             curr_row, curr_column = pivots.pop(0)
             collected_field.add((curr_row, curr_column))
-            for dir_ in self.delta_coords:
+            for dir_ in delta_coords:
                 delta_row = dir_[0]
                 delta_column = dir_[1]
                 new_row = curr_row + delta_row
