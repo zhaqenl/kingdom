@@ -83,4 +83,4 @@ class KingdomSolver(object):
                 elif column.isalpha() and column in army_field:
                     army_field[column].update(self.flood_fill((row_index, column_index), matrix))
 
-        print army_field
+        return army_field
