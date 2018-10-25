@@ -3,7 +3,8 @@
 class KingdomSolver(object):
     """Class."""
 
-    def coord_field(self, coord, matrix):
+    @classmethod
+    def coord_field(cls, coord, matrix):
         """Return True if coord is a field symbol, False if it is not."""
         max_row = len(matrix) - 1
         max_column = len(matrix[0]) - 1
@@ -16,7 +17,8 @@ class KingdomSolver(object):
 
         return False
 
-    def coord_army(self, coord, matrix):
+    @classmethod
+    def coord_army(cls, coord, matrix):
         """Return True if coord is an army symbol, False if it is not."""
         max_row = len(matrix) - 1
         max_column = len(matrix[0]) - 1
@@ -29,7 +31,8 @@ class KingdomSolver(object):
 
         return False
 
-    def map_alpha(self, string_grid):
+    @classmethod
+    def map_alpha(cls, string_grid):
         """Return dictionary containing letter and coordinate pairs."""
         matrix = string_grid.split()
         army_field = dict()
