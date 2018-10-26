@@ -56,8 +56,8 @@ class KingdomSolver(object):
 
         return [collected_field], collected_army
 
-    def map_alpha_field(self, string_grid):
-        """Return armies and the coordinates of fields they occupy."""
+    def map_army_field(self, string_grid):
+        """Return armies and their corresponding field coordinates."""
         matrix = string_grid.split()
         army_field = dict()
 
@@ -66,6 +66,16 @@ class KingdomSolver(object):
                 if column.isalpha() and not column in army_field:
                     army_field[column] = self.flood_fill((row_index, column_index), matrix)
                 elif column.isalpha() and column in army_field:
-                    army_field[column][0].extend(self.flood_fill((row_index, column_index), matrix)[0])
+                    army_field[column][0].extend(self.flood_fill((row_index, column_index),
+                                                                 matrix)[0])
 
         return army_field
+
+    def map_army_count(self, string_grid):
+        """Return armies and their corresponding count."""
+        army_count = dict()
+
+        for key, value in self.map_army_field(string_grid).items():
+            army_count[key] = len(value[0])
+
+        return army_count

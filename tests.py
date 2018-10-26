@@ -31,10 +31,13 @@ def test_flood_fill_valid_ebzzry():
                                                                   (7, 13)])],
                                                              set([(7, 13)])))
 
-def test_map_alpha_field_simple():
-    assert_equal(solver.map_alpha_field(input_data.simple_grid),
+def test_map_army_field_simple():
+    assert_equal(solver.map_army_field(input_data.simple_grid),
                  {'e': ([set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)])],
                          set([(3, 1), (2, 1)])),
                   'f': ([set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)]),
                          (set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)]))],
                          set([(1, 3), (3, 1)]))})
+
+def test_map_army_count_simple():
+    assert_equal(solver.map_army_count(input_data.simple_grid), {'e': 1, 'f': 2})
