@@ -6,9 +6,6 @@ solver = core.KingdomSolver()
 matrix_simple = input_data.simple_grid.split()
 matrix_ebzzry = input_data.ebzzry_grid.split()
 
-def test_map_alpha():
-    assert_equal(solver.map_alpha(input_data.simple_grid), {'e': [(1, 3)], 'f': [(2, 1), (3, 1)]})
-
 def test_valid_coord_false():
     assert_equal(solver.valid_coord((4, 5), matrix_simple), False)
 

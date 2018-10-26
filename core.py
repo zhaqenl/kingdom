@@ -16,21 +16,6 @@ class KingdomSolver(object):
 
         return False
 
-    @classmethod
-    def map_alpha(cls, string_grid):
-        """Return dictionary containing letter and coordinate pairs."""
-        matrix = string_grid.split()
-        army_field = dict()
-
-        for row_index, row in enumerate(matrix):
-            for column_index, column in enumerate(row):
-                if column.isalpha() and not column in army_field:
-                    army_field[column] = [(row_index, column_index)]
-                elif column.isalpha() and column in army_field:
-                    army_field[column] += [(row_index, column_index)]
-
-        return army_field
-
     def coord_type(self, coord, matrix):
         """Return \'army\' if coord is of an army symbol, \'field\' if it is of a field symbol."""
         row_index = coord[0]
