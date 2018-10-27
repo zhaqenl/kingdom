@@ -49,4 +49,4 @@ def test_contested_simple_2():
     assert_equal(solver.contested(input_data.simple_grid_2), 2)
 
 def test_contested_ebzzry():
-    assert_equal(solver.contested(input_data.simple_grid_2), 2)
+    assert_equal(solver.contested(input_data.ebzzry_grid), 1)
