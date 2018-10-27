@@ -85,7 +85,7 @@ class KingdomSolver(object):
         army_dict = self.map_army_field(string_grid)
         field_to_army = dict()
         contested_ = 0
-        
+
         for army, field in army_dict.items():
             for occupied in field[0]:
                 if not frozenset(occupied) in field_to_army:
