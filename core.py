@@ -81,7 +81,8 @@ class KingdomSolver(object):
         return army_count
 
     def contested(self, string_grid):
-        """Return number of contested fields."""
+        """Return contested fields with the corresponding contesting armies, and number of \
+        contests."""
         army_dict = self.map_army_field(string_grid)
         field_to_army = dict()
         contested_ = 0
@@ -96,5 +97,7 @@ class KingdomSolver(object):
         for field, armies in field_to_army.items():
             if len(armies) > 1:
                 contested_ += 1
+            elif len(armies) == 1:
+                field_to_army.pop(field)
 
-        return contested_
+        return field_to_army, contested_
