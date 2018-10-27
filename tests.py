@@ -41,3 +41,12 @@ def test_map_army_field_simple():
 
 def test_map_army_count_simple():
     assert_equal(solver.map_army_count(input_data.simple_grid), {'e': 1, 'f': 2})
+
+def test_contested_simple():
+    assert_equal(solver.contested(input_data.simple_grid), 1)
+
+def test_contested_simple_2():
+    assert_equal(solver.contested(input_data.simple_grid_2), 2)
+
+def test_contested_ebzzry():
+    assert_equal(solver.contested(input_data.simple_grid_2), 2)
