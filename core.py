@@ -89,6 +89,7 @@ class KingdomSolver(object):
         contests."""
         army_dict = self.map_army_field()
         field_to_army = dict()
+        contested_fields = dict()
         contested_ = 0
 
         for army, field_list in army_dict.items():
@@ -102,4 +103,8 @@ class KingdomSolver(object):
             if len(armies) > 1:
                 contested_ += 1
 
-        return contested_
+        for field, armies in field_to_army.items():
+            if len(armies) != 1:
+                contested_fields[field] = armies
+
+        return contested_, contested_fields

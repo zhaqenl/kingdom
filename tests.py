@@ -50,12 +50,16 @@ def test_map_army_count_simple():
 
 def test_contested_simple():
     """Test contested on simple_grid."""
-    assert_equal(SOLVER_SIMPLE.contested(), 1)
+    assert_equal(SOLVER_SIMPLE.contested(), (1, {frozenset([(1, 3), (2, 3), (3, 3), (2, 2), (3, 0),
+                                                            (3, 1), (2, 1)]): set(['e', 'f'])}))
 
 def test_contested_simple_2():
     """Test contested on simple_grid_2."""
-    assert_equal(SOLVER_SIMPLE_2.contested(), 2)
+    assert_equal(SOLVER_SIMPLE_2.contested(), (2, {frozenset([(1, 3), (3, 4), (2, 4), (1, 4)]):
+                                                   set(['e', 'f']),
+                                                   frozenset([(3, 0), (3, 1)]): set(['a', 'f'])}))
 
 def test_contested_ebzzry():
     """Test contested on ebzzry_grid."""
-    assert_equal(SOLVER_EBZZRY.contested(), 1)
+    assert_equal(SOLVER_EBZZRY.contested(), (1, {frozenset([(7, 9), (7, 8), (6, 8), (7, 10),
+                                                            (7, 7)]): set(['e', 'd'])}))
