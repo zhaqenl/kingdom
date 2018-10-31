@@ -5,7 +5,10 @@ class KingdomSolver(object):
 
     def __init__(self, string_grid):
         """Initialize matrix."""
-        self.matrix = string_grid.split()
+        if isinstance(string_grid, list):
+            self.matrix = string_grid
+        else:
+            self.matrix = string_grid.split()
 
     def valid_coord(self, coord):
         """Return True if coord is within matrix bounds, False if not."""
