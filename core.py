@@ -60,7 +60,7 @@ class KingdomSolver(object):
                         collected_army.add((new_row, new_column))
                         pivots.append((new_row, new_column))
 
-        return [collected_field], collected_army
+        return [collected_field]
 
     def map_army_field(self):
         """Return armies and their corresponding field coordinates."""
@@ -71,7 +71,7 @@ class KingdomSolver(object):
                 if column.isalpha() and not column in army_field:
                     army_field[column] = self.flood_fill((row_index, column_index))
                 elif column.isalpha() and column in army_field:
-                    army_field[column][0].extend(self.flood_fill((row_index, column_index))[0])
+                    army_field[column].extend(self.flood_fill((row_index, column_index)))
 
         return army_field
 
@@ -80,7 +80,7 @@ class KingdomSolver(object):
         army_count = dict()
 
         for key, value in self.map_army_field().items():
-            army_count[key] = len(value[0])
+            army_count[key] = len(value)
 
         return army_count
 
@@ -91,12 +91,12 @@ class KingdomSolver(object):
         field_to_army = dict()
         contested_ = 0
 
-        for army, field in army_dict.items():
-            for occupied in field[0]:
-                if not frozenset(occupied) in field_to_army:
-                    field_to_army[frozenset(occupied)] = set([army])
-                elif frozenset(occupied) in field_to_army:
-                    field_to_army[frozenset(occupied)].update(set([army]))
+        for army, field_list in army_dict.items():
+            for field in field_list:
+                if not frozenset(field) in field_to_army:
+                    field_to_army[frozenset(field)] = set([army])
+                elif frozenset(field) in field_to_army:
+                    field_to_army[frozenset(field)].update(set([army]))
 
         for field, armies in field_to_army.items():
             if len(armies) > 1:

@@ -30,24 +30,19 @@ def test_flood_fill_field():
 
 def test_flood_fill_army():
     """Test flood_fill on army symbol."""
-    assert_equal(SOLVER_SIMPLE.flood_fill((1, 3)), ([set([(1, 3), (2, 3), (3, 3), (2, 2),
-                                                          (2, 1), (3, 1), (3, 0)])],
-                                                    set([(3, 1), (2, 1)])))
+    assert_equal(SOLVER_SIMPLE.flood_fill((1, 3)), [set([(1, 3), (2, 3), (3, 3), (2, 2), (2, 1),
+                                                         (3, 1), (3, 0)])])
 
 def test_flood_fill_valid_ebzzry():
     """Test flood_fill on army symbol (ebzzry_grid)."""
-    assert_equal(SOLVER_EBZZRY.flood_fill((7, 12)), ([set([(6, 12), (6, 13), (7, 12),
-                                                           (7, 13)])],
-                                                     set([(7, 13)])))
+    assert_equal(SOLVER_EBZZRY.flood_fill((7, 12)), [set([(6, 12), (6, 13), (7, 12), (7, 13)])])
 
 def test_map_army_field_simple():
     """Test map_army_field on simple_grid."""
     assert_equal(SOLVER_SIMPLE.map_army_field(),
-                 {'e': ([set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)])],
-                        set([(3, 1), (2, 1)])),
-                  'f': ([set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)]),
-                         (set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)]))],
-                        set([(1, 3), (3, 1)]))})
+                 {'e': [set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)])],
+                  'f': [set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)]),
+                        (set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)]))]})
 
 def test_map_army_count_simple():
     """Test map_army_count on simple_grid."""
