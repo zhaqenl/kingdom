@@ -1,52 +1,66 @@
-from nose.tools import *
+"""File containing tests for core.py."""
+
+from nose.tools import assert_equal
 import core
 import input_data
 
-solver = core.KingdomSolver()
-matrix_simple = input_data.simple_grid.split()
-matrix_ebzzry = input_data.ebzzry_grid.split()
+SOLVER_SIMPLE = core.KingdomSolver(input_data.simple_grid)
+SOLVER_SIMPLE_2 = core.KingdomSolver(input_data.simple_grid_2)
+SOLVER_EBZZRY = core.KingdomSolver(input_data.ebzzry_grid)
 
 def test_valid_coord_false():
-    assert_equal(solver.valid_coord((4, 5), matrix_simple), False)
+    """Test valid_coord on out of bound coordinate."""
+    assert_equal(SOLVER_SIMPLE.valid_coord((4, 5)), False)
 
 def test_valid_coord_true():
-    assert_equal(solver.valid_coord((4, 4), matrix_simple), True)
+    """Test valid_coord on inside-bounded coordinate."""
+    assert_equal(SOLVER_SIMPLE.valid_coord((4, 4)), True)
 
 def test_coord_type_army():
-    assert_equal(solver.coord_type((3, 1), matrix_simple), 'army')
+    """Test coord_type on an army symbol."""
+    assert_equal(SOLVER_SIMPLE.coord_type((3, 1)), 'army')
 
 def test_coord_type_field():
-    assert_equal(solver.coord_type((3, 0), matrix_simple), 'field')
+    """Test coord_type on a field symbol."""
+    assert_equal(SOLVER_SIMPLE.coord_type((3, 0)), 'field')
 
-def flood_fill_non_valid():
-    assert_equal(solver.flood_fill((3, 1), matrix_simple), set())
+def test_flood_fill_field():
+    """Test flood_fill on field symbol."""
+    assert_equal(SOLVER_SIMPLE.flood_fill((3, 0)), None)
 
-def test_flood_fill_valid_simple():
-    assert_equal(solver.flood_fill((1, 3), matrix_simple), ([set([(1, 3), (2, 3), (3, 3), (2, 2),
-                                                                 (2, 1), (3, 1), (3, 0)])],
-                                                            set([(3, 1), (2, 1)])))
+def test_flood_fill_army():
+    """Test flood_fill on army symbol."""
+    assert_equal(SOLVER_SIMPLE.flood_fill((1, 3)), ([set([(1, 3), (2, 3), (3, 3), (2, 2),
+                                                          (2, 1), (3, 1), (3, 0)])],
+                                                    set([(3, 1), (2, 1)])))
 
 def test_flood_fill_valid_ebzzry():
-    assert_equal(solver.flood_fill((7, 12), matrix_ebzzry), ([set([(6, 12), (6, 13), (7, 12),
-                                                                  (7, 13)])],
-                                                             set([(7, 13)])))
+    """Test flood_fill on army symbol (ebzzry_grid)."""
+    assert_equal(SOLVER_EBZZRY.flood_fill((7, 12)), ([set([(6, 12), (6, 13), (7, 12),
+                                                           (7, 13)])],
+                                                     set([(7, 13)])))
 
 def test_map_army_field_simple():
-    assert_equal(solver.map_army_field(input_data.simple_grid),
+    """Test map_army_field on simple_grid."""
+    assert_equal(SOLVER_SIMPLE.map_army_field(),
                  {'e': ([set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)])],
-                         set([(3, 1), (2, 1)])),
+                        set([(3, 1), (2, 1)])),
                   'f': ([set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)]),
                          (set([(1, 3), (3, 3), (3, 0), (3, 1), (2, 1), (2, 3), (2, 2)]))],
-                         set([(1, 3), (3, 1)]))})
+                        set([(1, 3), (3, 1)]))})
 
 def test_map_army_count_simple():
-    assert_equal(solver.map_army_count(input_data.simple_grid), {'e': 1, 'f': 2})
+    """Test map_army_count on simple_grid."""
+    assert_equal(SOLVER_SIMPLE.map_army_count(), {'e': 1, 'f': 2})
 
 def test_contested_simple():
-    assert_equal(solver.contested(input_data.simple_grid), 1)
+    """Test contested on simple_grid."""
+    assert_equal(SOLVER_SIMPLE.contested(), 1)
 
 def test_contested_simple_2():
-    assert_equal(solver.contested(input_data.simple_grid_2), 2)
+    """Test contested on simple_grid_2."""
+    assert_equal(SOLVER_SIMPLE_2.contested(), 2)
 
 def test_contested_ebzzry():
-    assert_equal(solver.contested(input_data.ebzzry_grid), 1)
+    """Test contested on ebzzry_grid."""
+    assert_equal(SOLVER_EBZZRY.contested(), 1)
