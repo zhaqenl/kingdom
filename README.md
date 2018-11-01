@@ -69,8 +69,8 @@ After the instance creation, we call its `contested()` instance method:
 ```
 
 The result of the above invokation is a tuple whose first element is the total number of fields
-being contested, while the second element is a dictionary containing a contested field and
-contesting army as its key and value pairs, respectively:
+being contested, while the second element is a dictionary containing contested fields as the
+dictionary keys, and the respective contesting armies as the dictionary values:
 
 ```
 >>> simple_solver.contested()
