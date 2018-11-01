@@ -77,8 +77,8 @@ dictionary keys, and the respective contesting armies as the dictionary values:
 (1, {frozenset([(1, 3), (2, 3), (3, 3), (2, 2), (3, 0), (3, 1), (2, 1)]): set(['e', 'f'])})
 ```
 
-To return the respective numbers of armies on the field, invoke the `map_army_count()` instance
-method:
+To return the tally of the armies from the different kingdoms, invoke the `map_army_count()`
+instance method:
 
 ```
 >>> simple_solver.map_army_count()
