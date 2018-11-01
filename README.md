@@ -128,8 +128,7 @@ contested 3
 
 #### <a name="output"></a> File output
 
-If you want to save the output of the previous command to a file, redirect the output stream to a
-file:
+If you want to save the output of running the script on an input file, redirect its output stream:
 
 ```
 $ python kingdom.py dummy_input.txt > dummy_output.txt
