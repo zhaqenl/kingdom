@@ -33,7 +33,7 @@ with open(ARGS.filename) as f:
             grid += [f.readline().strip('\n')]
         solver = core.KingdomSolver(grid)
         contested_ = solver.contested()[0]
-        for key, value in sorted(solver.map_army_count().items()):
+        for key, value in solver.map_army_count():
             print key, value
         if contested_ != 0:
             sys.stdout.write('contested ')

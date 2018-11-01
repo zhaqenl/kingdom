@@ -46,7 +46,7 @@ def test_map_army_field_simple():
 
 def test_map_army_count_simple():
     """Test map_army_count on simple_grid."""
-    assert_equal(SOLVER_SIMPLE.map_army_count(), {'e': 1, 'f': 2})
+    assert_equal(SOLVER_SIMPLE.map_army_count(), [('e', 1), ('f', 2)])
 
 def test_contested_simple():
     """Test contested on simple_grid."""

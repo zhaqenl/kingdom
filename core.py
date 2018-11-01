@@ -85,7 +85,7 @@ class KingdomSolver(object):
         for key, value in self.map_army_field().items():
             army_count[key] = len(value)
 
-        return army_count
+        return sorted(army_count.items())
 
     def contested(self):
         """Return contested fields with the corresponding contesting armies, and number of \
