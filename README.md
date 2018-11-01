@@ -19,7 +19,7 @@ directions—west, north, east, and south. The script accomplishes the following
 
 - Return all the fields occupied by at least one army.
 - Return the number of armies of the different kingdoms.
-- Return the number of contested fields (those that contain at least 2 armies from 2 different
+- Return the number of contested fields (those that contain at least 2 armies from different
   kingdoms).
 
 
