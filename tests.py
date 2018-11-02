@@ -1,6 +1,6 @@
 """File containing tests for core.py."""
 
-from nose.tools import assert_equal
+from nose.tools import assert_equal, assert_false, assert_true
 import core
 import input_data
 
@@ -10,11 +10,11 @@ SOLVER_EBZZRY = core.KingdomSolver(input_data.ebzzry_grid)
 
 def test_valid_coord_false():
     """Test valid_coord on out of bound coordinate."""
-    assert_equal(SOLVER_SIMPLE.valid_coord((4, 5)), False)
+    assert_false(SOLVER_SIMPLE.valid_coord((4, 5)))
 
 def test_valid_coord_true():
     """Test valid_coord on inside-bounded coordinate."""
-    assert_equal(SOLVER_SIMPLE.valid_coord((4, 4)), True)
+    assert_true(SOLVER_SIMPLE.valid_coord((4, 4)))
 
 def test_coord_type_army():
     """Test coord_type on an army symbol."""
